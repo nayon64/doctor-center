@@ -1,16 +1,13 @@
 import React from "react";
-import tretment from "../../../../assets/images/treatment.png"
+import tretment from "../../../../assets/images/treatment.png";
+import PrimaryButton from "../../../../componets/PrimaryButton/PrimaryButton";
 
 const Tertment = () => {
   return (
     <div className="hero my-36">
       <div className="hero-content grid md:grid-cols-2">
         <div className="flex justify-center">
-          <img
-            src={tretment}
-            className="md:max-w-sm rounded-lg"
-            alt=""
-          />
+          <img src={tretment} className="md:max-w-sm rounded-lg" alt="" />
         </div>
         <div>
           <h1 className="text-5xl font-bold">
@@ -24,9 +21,7 @@ const Tertment = () => {
             here', making it look like readable English. Many desktoppublishing
             packages and web page
           </p>
-          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">
-            Get Started
-          </button>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>

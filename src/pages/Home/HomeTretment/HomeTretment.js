@@ -1,19 +1,24 @@
 import React from "react";
-import doctorSmall from "../../../assets/images/doctor-small.png"
-import bg from "../../../assets/images/appointment.png"
+import bg from "../../../assets/images/appointment.png";
+import doctor from "../../../assets/images/doctor.png";
+import PrimaryButton from "../../../componets/PrimaryButton/PrimaryButton";
 
 const HomeTretment = () => {
   return (
     <div className="hero ">
       <div
-        className="hero-content w-full grid md:grid-cols-2 p-0 gap-px" 
+        className="hero-content w-full p-5 grid md:grid-cols-2 md:p-0 gap-px"
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="justify-center hidden md:block">
-          <img src={doctorSmall} className="max-w-sm self-end" alt="" />
+        <div className="flex justify-center">
+          <img
+            src={doctor}
+            className=" hidden md:block -mt-36 h-full self-end"
+            alt=""
+          />
         </div>
-			  <div className="text-white max-w-lg">
-				  <p className="text-xl font-bold text-primary">Appointment</p>
+        <div className="text-white max-w-lg ">
+          <p className="text-xl font-bold text-primary">Appointment</p>
           <h1 className="text-4xl mt-6 font-semibold">
             Make an appointment Today
           </h1>
@@ -25,9 +30,7 @@ const HomeTretment = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">
-            Get Started
-          </button>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>
