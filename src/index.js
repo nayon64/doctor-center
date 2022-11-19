@@ -5,12 +5,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HelmetProvider } from "react-helmet-async";
 import "react-day-picker/dist/style.css";
+import AuthProvider from "./context/AuthProvider/AuthProvider";
+import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <HelmetProvider>
     <React.StrictMode>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <App />
+          <Toaster></Toaster>
+        </AuthProvider>
+      </QueryClientProvider>
     </React.StrictMode>
   </HelmetProvider>
 );

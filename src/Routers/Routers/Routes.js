@@ -5,6 +5,10 @@ import Appointment from "../../pages/Appointment/Appointment/Appointment";
 import Login from "../../pages/Login/Login";
 import Contact from "../../pages/Contact/Contact";
 import Register from "../../pages/Register/Register";
+import Dashboard from "../../layout/Dashboard/Dashboard";
+import DashBoard from "../../pages/DashBoard/DashBoard/DashBoard";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
 
 const routers = createBrowserRouter([
   {
@@ -34,6 +38,24 @@ const routers = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashBoard></DashBoard>,
+      },
+      {
+        path: "/dashboard/allusers",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

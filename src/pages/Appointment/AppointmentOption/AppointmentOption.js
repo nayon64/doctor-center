@@ -1,6 +1,5 @@
 const AppointmentOption = ({ appointmentOption, setTretment }) => {
   const { name, slots } = appointmentOption;
-  console.log(appointmentOption);
   return (
     <div className="card  shadow-xl py-8">
       <div className="card-body text-center">

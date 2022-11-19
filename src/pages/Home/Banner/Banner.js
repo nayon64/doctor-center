@@ -6,7 +6,7 @@ import PrimaryButton from '../../../componets/PrimaryButton/PrimaryButton';
 const Banner = () => {
 	return (
     <div
-      className="hero py-6 lg:py-48 bg-cover bg-no-repeat"
+      className="hero py-6 lg:py-24 bg-cover bg-no-repeat"
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="hero-content  flex-col lg:flex-row-reverse ">

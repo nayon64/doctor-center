@@ -5,7 +5,7 @@ import { DayPicker } from 'react-day-picker';
 const AppointmentBanner = ({ setSelectedData, selectedDate }) => {
   return (
     <header
-      className="bg-cover bg-center bg-no-repeat md:py-48"
+      className="bg-cover bg-center bg-no-repeat md:py-24"
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="hero">

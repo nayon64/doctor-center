@@ -32,8 +32,8 @@ const CartsInfo = () => {
 	return (
 		<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6'>
 			{
-				cartInfo.map(cart => <CartInfo
-					key={cart.id}
+				cartInfo.map((cart,i) => <CartInfo
+					key={i}
 					cart={cart}
 				></CartInfo>)
 			}

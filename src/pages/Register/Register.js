@@ -1,12 +1,64 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import CreateJwtToken from '../../api/CreateJwtToken/CreateJwtToken';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
-	const { register,formState:{errors}, handleSubmit  } = useForm();
+  const { register, formState: { errors }, handleSubmit } = useForm();
+  const [createError, setCreateError] = useState("")
+  const [createUserEmail, setCreateUserEamil] = useState("")
+  const [token] = CreateJwtToken(createUserEmail)
+  
+  const navigate =useNavigate()
+
+  if (token) {
+    navigate("/")
+  }
+  
+  const { singUp, profileUpdate } = useContext(AuthContext);
+
 	const onSubmit = data => {
-		console.log(data)
-	}
+    console.log(data)
+    singUp(data.email, data.password)
+      .then(result => {
+        console.log(result.user)
+        profileUpdate({ displayName: data.name }).then(result => {
+          toast.success("Successfully Create an Account");
+          createUser(data.name, data.email)
+          setCreateUserEamil(data.email);
+          setCreateError("");
+        })
+        .catch(err=>console.log(err))
+        
+      })
+      .catch(err => {
+        setCreateError(err.message)
+        console.log(err)
+      })
+  }
+  
+  const createUser =  (name, email) => {
+    
+    const userInfo = {
+      name:name, email:email
+    }
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then(res => res.json())
+      .then(data => {
+      console.log(data)
+    })
+  
+  }
+
+
 	return (
     <div className="w-96 mx-auto border p-4 rounded-xl shadow-xl border-none">
       <h1 className="text-center text-xl text-accent">Register Form</h1>
@@ -39,6 +91,7 @@ const Register = () => {
         {errors.email && (
           <p className="text-rose-500">{errors.email?.message}</p>
         )}
+        {createError && <p className='text-rose-500'>{createError}</p>}
         <div className="form-control w-full ">
           <label className="label">
             <span className="label-text">Password</span>
@@ -47,13 +100,7 @@ const Register = () => {
             type="password"
             {...register("password", {
               required: "Enter your password",
-              pattern: [
-                { value: /[A-Z]/, message: "Please Enter one uppercase" },
-                { value: /[a-z]/, message: "Please Enter one lowercase" },
-                { value: /[0-9]/, message: "Please Enter one number" },
-                { value: /[!#$%&?@]/, message: "Please Enter one number" },
-              ],
-              // maxLength: { value: 6, message: "Please Enter 6 charecter." },
+              maxLength: { value: 6, message: "Please Enter 6 charecter." },
             })}
             className="input input-bordered w-full"
           />

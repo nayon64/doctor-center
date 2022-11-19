@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import appointment from "../../../assets/images/appointment.png";
 import PrimaryButton from '../../../componets/PrimaryButton/PrimaryButton';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const ContactForm = () => {
+  const {user}=useContext(AuthContext)
 	return (
     <section className="mx-5 py-16 mt-36" style={{ backgroundImage: `url(${appointment})` }}>
       <div className='text-center'>
@@ -28,6 +30,7 @@ const ContactForm = () => {
           <div className="form-control">
             <textarea className="textarea" placeholder="Your Massage"></textarea>
           </div>
+          {user?.email && <p className='text-white'>{user?.email}</p>}
           <div className=" mt-6 text-center">
             <PrimaryButton>Submit</PrimaryButton>
           </div>
