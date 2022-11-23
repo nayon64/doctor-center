@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import CreateJwtToken from '../../api/CreateJwtToken/CreateJwtToken';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -13,9 +13,9 @@ const Register = () => {
   
   const navigate =useNavigate()
 
-  if (token) {
-    navigate("/")
-  }
+  // if (token) {
+  //   navigate("/")
+  // }
   
   const { singUp, profileUpdate } = useContext(AuthContext);
 
@@ -23,12 +23,11 @@ const Register = () => {
     console.log(data)
     singUp(data.email, data.password)
       .then(result => {
-        console.log(result.user)
         profileUpdate({ displayName: data.name }).then(result => {
-          toast.success("Successfully Create an Account");
           createUser(data.name, data.email)
           setCreateUserEamil(data.email);
           setCreateError("");
+          toast.success("Successfully Create an Account");
         })
         .catch(err=>console.log(err))
         
@@ -62,6 +61,7 @@ const Register = () => {
 	return (
     <div className="w-96 mx-auto border p-4 rounded-xl shadow-xl border-none">
       <h1 className="text-center text-xl text-accent">Register Form</h1>
+      {token&&<Navigate to="/"  replace></Navigate>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full ">
           <label className="label">
@@ -91,7 +91,7 @@ const Register = () => {
         {errors.email && (
           <p className="text-rose-500">{errors.email?.message}</p>
         )}
-        {createError && <p className='text-rose-500'>{createError}</p>}
+        {createError && <p className="text-rose-500">{createError}</p>}
         <div className="form-control w-full ">
           <label className="label">
             <span className="label-text">Password</span>

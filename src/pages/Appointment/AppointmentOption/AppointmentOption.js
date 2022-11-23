@@ -1,5 +1,5 @@
 const AppointmentOption = ({ appointmentOption, setTretment }) => {
-  const { name, slots } = appointmentOption;
+  const { name, slots,price } = appointmentOption;
   return (
     <div className="card  shadow-xl py-8">
       <div className="card-body text-center">
@@ -11,6 +11,7 @@ const AppointmentOption = ({ appointmentOption, setTretment }) => {
           {slots.length > 0 ? slots.length : "No"}{" "}
           {slots.length > 1 ? "spaces" : "space"} available
         </p>
+        <p>price: ${price}</p>
         <div className="card-actions justify-center">
           <label
             htmlFor="appointment-modal"

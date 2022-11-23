@@ -30,8 +30,6 @@ const Login = () => {
     logIn(data.email, data.password)
       .then((result) => {
         toast.success("Login Successfull")
-        console.log("login")
-        console.log(result.user);
         // CreateJwtToken(result.user.email)
         setUserEmail(result.user.email)
           reset()
@@ -48,7 +46,8 @@ const Login = () => {
       .then(result => {
         console.log(result.user)
         toast.success("Google Login Successfull")
-    })
+      })
+    .catch(err=>console.log(err))
   }
   return (
     <div className="w-96 mx-auto border p-4 rounded-xl shadow-xl border-none">

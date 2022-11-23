@@ -9,6 +9,10 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 import DashBoard from "../../pages/DashBoard/DashBoard/DashBoard";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AddDoctor from "../../pages/DashBoard/AddDoctor/AddDoctor";
+import ManageDoctors from "../../pages/DashBoard/ManageDoctors/ManageDoctors";
+import Payment from "../../pages/DashBoard/Payment/Payment";
 
 const routers = createBrowserRouter([
   {
@@ -54,8 +58,34 @@ const routers = createBrowserRouter([
         element: <DashBoard></DashBoard>,
       },
       {
+        path: "/dashboard/payment/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/payment/${params.id}`),
+        element:<Payment></Payment>,
+      },
+      {
         path: "/dashboard/allusers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/adddoctor",
+        element: (
+          <AdminRoute>
+            <AddDoctor></AddDoctor>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manageDoctor",
+        element: (
+          <AdminRoute>
+            <ManageDoctors></ManageDoctors>
+          </AdminRoute>
+        ),
       },
     ],
   },

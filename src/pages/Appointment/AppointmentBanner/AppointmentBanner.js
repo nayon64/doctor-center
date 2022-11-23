@@ -13,11 +13,16 @@ const AppointmentBanner = ({ setSelectedData, selectedDate }) => {
           <div className="flex justify-center items-center order-2 pt-6 md:pt-0 md:order-1">
             <DayPicker
               mode="single"
+              onSelect={(data) => {
+                if (data) {
+                  setSelectedData(data);
+                }
+              }}
               selected={selectedDate}
-              onSelect={setSelectedData}
+              // onSelect={setSelectedData}
             ></DayPicker>
           </div>
-          <div className='order-1 md:order-2'>
+          <div className="order-1 md:order-2">
             <img alt="" src={chaire} className="rounded-lg shadow-2xl" />
           </div>
         </div>
